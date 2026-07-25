@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Quality Predictor</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background:#eef4ff;
+        }
+
+        .card{
+            margin-top:40px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,0,0,.15);
+        }
+
+        h2{
+            color:#0d6efd;
+            font-weight:bold;
+        }
+
+        .btn-primary{
+            width:100%;
+            padding:12px;
+            font-size:18px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-body">
+
+<h2 class="text-center mb-4">
+🌙 Sleep Quality Predictor
+</h2>
+
+<form method="POST" action="/predict">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Gender</label>
+
+<select class="form-select" name="gender" required>
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Age</label>
+
+<input
+type="number"
+class="form-control"
+name="age"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Occupation</label>
+
+<input
+type="text"
+class="form-control"
+name="occupation"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Sleep Duration</label>
+
+<input
+type="number"
+step="0.1"
+class="form-control"
+name="sleep_duration"
+required>
+
+</div>
+<input
+type="number"
+step="0.1"
+class="form-control"
+name="sleep_duration"
+required>
+
+</div>
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Physical Activity Level</label>
+
+<input
+type="number"
+class="form-control"
+name="physical_activity"
+placeholder="Example: 40"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Stress Level</label>
+
+<input
+type="number"
+class="form-control"
+name="stress_level"
+min="1"
+max="10"
+placeholder="1 - 10"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">BMI Category</label>
+
+<select
+class="form-select"
+name="bmi"
+required>
+
+<option value="">Select BMI</option>
+<option>Normal</option>
+<option>Normal Weight</option>
+<option>Overweight</option>
+<option>Obese</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Blood Pressure</label>
+
+<input
+type="text"
+class="form-control"
+name="blood_pressure"
+placeholder="120/80"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Heart Rate</label>
+
+<input
+type="number"
+class="form-control"
+name="heart_rate"
+placeholder="70"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Daily Steps</label>
+
+<input
+type="number"
+class="form-control"
+name="daily_steps"
+placeholder="8000"
+required>
+
+</div>
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Screen Time Before Bed (minutes)
+</label>
+
+<input
+type="number"
+class="form-control"
+name="screen_time"
+placeholder="Example: 60"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Caffeine Intake
+</label>
+
+<select
+class="form-select"
+name="caffeine"
+required>
+
+<option value="">Select</option>
+<option>None</option>
+<option>Low</option>
+<option>Moderate</option>
+<option>High</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Mood Before Sleep
+</label>
+
+<select
+class="form-select"
+name="mood"
+required>
+
+<option value="">Select</option>
+<option>Happy</option>
+<option>Neutral</option>
+<option>Sad</option>
+<option>Anxious</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Bed Time
+</label>
+
+<input
+type="time"
+class="form-control"
+name="bedtime"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Wake Up Time
+</label>
+
+<input
+type="time"
+class="form-control"
+name="wake_time"
+required>
+
+</div>
+<div class="col-md-12 mb-3">
+
+<label class="form-label">Sleep Disorder</label>
+
+<select
+class="form-select"
+name="sleep_disorder"
+required>
+
+<option value="">Select</option>
+<option>None</option>
+<option>Insomnia</option>
+<option>Sleep Apnea</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-primary">
+
+🤖 Predict Sleep Quality
+
+</button>
+
+</form>
+
+<br>
+
+<a href="/" class="btn btn-secondary w-100">
+⬅ Back to Home
+</a>
+
+</div>
+
+</div>
+
+</div>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

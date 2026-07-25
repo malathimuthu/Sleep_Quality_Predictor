@@ -1,0 +1,249 @@
+/* ==========================
+   Home Page CSS
+   Sleep Quality Predictor
+========================== */
+
+
+/* Main Home Container */
+
+.home-container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 0;
+}
+
+
+/* Hero Section */
+
+.hero-section{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+}
+
+
+/* Left Content */
+
+.hero-content{
+
+    width:50%;
+
+}
+
+
+.hero-content h1{
+
+    color:#2563eb;
+
+    font-size:42px;
+
+    font-weight:bold;
+
+}
+
+
+.hero-content p{
+
+    color:#475569;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+}
+
+
+/* Image Section */
+
+.hero-image{
+
+    width:45%;
+
+    text-align:center;
+
+}
+
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:450px;
+
+    height:auto;
+
+}
+
+
+
+/* Buttons */
+
+.home-btn{
+
+    display:inline-block;
+
+    padding:14px 30px;
+
+    margin-top:20px;
+
+    background:#2563eb;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+
+}
+
+
+.home-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* Feature Cards */
+
+.features{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.feature-card{
+
+    background:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.feature-card h3{
+
+    color:#2563eb;
+
+}
+
+
+.feature-card p{
+
+    color:#64748b;
+
+}
+
+
+
+/* Responsive Design */
+
+@media(max-width:900px){
+
+    .hero-section{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+
+    .hero-content,
+    .hero-image{
+
+        width:100%;
+
+    }
+
+
+    .hero-content h1{
+
+        font-size:32px;
+
+    }
+
+
+    .features{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+
+@media(max-width:480px){
+
+    .home-container{
+
+        width:95%;
+
+    }
+
+
+    .hero-section{
+
+        padding:20px;
+
+    }
+
+
+    .hero-content h1{
+
+        font-size:26px;
+
+    }
+
+
+    .hero-content p{
+
+        font-size:15px;
+
+    }
+
+
+    .home-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}

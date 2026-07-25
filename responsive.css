@@ -1,0 +1,142 @@
+/* ==========================
+   Responsive Design CSS
+   Sleep Quality Predictor
+========================== */
+
+
+/* Tablet Devices */
+
+@media (max-width: 992px){
+
+    .container{
+        width:95%;
+    }
+
+    .card{
+        margin-top:25px;
+        padding:25px;
+    }
+
+    .navbar{
+        font-size:24px;
+    }
+
+    .row{
+        display:block;
+    }
+
+    .col-md-6,
+    .col-md-12{
+        width:100%;
+    }
+
+    img{
+        width:100%;
+        height:auto;
+    }
+
+}
+
+
+/* Mobile Devices */
+
+@media (max-width: 768px){
+
+    body{
+        font-size:14px;
+    }
+
+
+    .container{
+        width:95%;
+        padding:10px;
+    }
+
+
+    .card{
+        padding:20px;
+        border-radius:12px;
+    }
+
+
+    h1{
+        font-size:24px;
+    }
+
+
+    h2{
+        font-size:22px;
+    }
+
+
+    .navbar{
+        font-size:20px;
+        padding:15px;
+    }
+
+
+    input,
+    select,
+    textarea,
+    button{
+        font-size:14px;
+        padding:10px;
+    }
+
+
+    .btn{
+        width:100%;
+        margin-top:10px;
+    }
+
+
+    table{
+        width:100%;
+        overflow-x:auto;
+        display:block;
+    }
+
+
+    canvas{
+        max-width:100%;
+        height:auto !important;
+    }
+
+}
+
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+    .card{
+        padding:15px;
+    }
+
+
+    h2{
+        font-size:20px;
+    }
+
+
+    .navbar{
+        font-size:18px;
+    }
+
+
+    .result{
+        font-size:24px;
+    }
+
+
+    .recommendation{
+        font-size:14px;
+        padding:15px;
+    }
+
+
+    img{
+        width:100%;
+    }
+
+}

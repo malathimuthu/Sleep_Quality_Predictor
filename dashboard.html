@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef5ff;
+}
+
+.navbar{
+    background:#1e293b;
+    color:white;
+    padding:18px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    margin-top:40px;
+}
+
+.cards{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.card{
+    flex:1;
+    min-width:220px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.card h2{
+    margin:0;
+    color:#2563eb;
+}
+
+.card p{
+    font-size:30px;
+    font-weight:bold;
+    color:#111827;
+}
+
+.progress-box{
+    background:white;
+    margin-top:40px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.progress{
+    width:100%;
+    background:#ddd;
+    border-radius:30px;
+    overflow:hidden;
+    height:25px;
+}
+
+.progress-bar{
+    width:75%;
+    height:25px;
+    background:#22c55e;
+    text-align:center;
+    color:white;
+    line-height:25px;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 25px;
+    border-radius:8px;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+</style>
+
+</head>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<body>
+
+<div class="navbar">
+📊 Sleep Quality Dashboard
+</div>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h2>Total Predictions</h2>
+<p>{{ total }}</p>
+</div>
+
+<div class="card">
+<h2>Average Score</h2>
+<p>{{ average }}</p>
+</div>
+
+<div class="card">
+<h2>Highest Score</h2>
+<p>{{ highest }}</p>
+</div>
+
+<div class="card">
+<h2>Lowest Score</h2>
+<p>{{ lowest }}</p>
+</div>
+
+</div>
+
+<div class="progress-box">
+
+<h2>Overall Sleep Score</h2>
+
+<div class="progress">
+<div class="progress-bar" style="width: 70%;">
+    70%
+</div>
+</div>
+</div>
+
+<hr style="margin-top:40px; margin-bottom:30px;">
+
+<h2 style="text-align:center;">📊 Sleep Quality Chart</h2>
+<br><br>
+
+<h2 style="text-align:center;">🥧 Sleep Quality Distribution</h2>
+
+<canvas id="pieChart" width="400" height="200"></canvas>
+
+
+<canvas id="sleepChart" width="400" height="150"></canvas>
+
+<hr style="margin-top:40px;">
+
+<h2>🕒 Recent Predictions</h2>
+<br>
+
+<input
+    type="text"
+    id="searchInput"
+    onkeyup="searchTable()"
+    placeholder="🔍 Search Prediction..."
+    style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; margin-bottom:20px;">
+
+<table border="1" cellspacing="0" cellpadding="10" style="width:100%; border-collapse:collapse; margin-top:20px;">
+
+    <tr style="background:#2563eb; color:white;">
+        <th>Date</th>
+        <th>Sleep Duration</th>
+        <th>Prediction</th>
+    </tr>
+
+    {% for row in recent %}
+    <tr>
+        <td>{{ row["Date"] }}</td>
+        <td>{{ row["Sleep Duration"] }}</td>
+        <td>{{ row["Prediction"] }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+<a href="/download" class="btn">📥 Download History CSV</a>
+<a href="/clear_history" class="btn" style="background:#dc2626;">
+    🗑 Clear History
+</a>
+<a href="/" class="btn">🏠 Back to Home</a>
+
+</div>
+
+</div>
+<script>
+const ctx = document.getElementById("sleepChart");
+
+new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: ["Total", "Average", "Highest", "Lowest"],
+        datasets: [
+            {
+                label: "Sleep Statistics",
+                data: [
+                    Number("{{ total }}"),
+                    Number("{{ average }}"),
+                    Number("{{ highest }}"),
+                    Number("{{ lowest }}")
+                ],
+                backgroundColor: [
+                    "#3b82f6",
+                    "#22c55e",
+                    "#f59e0b",
+                    "#ef4444"
+                ],
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+
+
+const pieCtx = document.getElementById("pieChart");
+
+new Chart(pieCtx, {
+
+    type: "pie",
+
+    data: {
+
+        labels: [
+            "Excellent",
+            "Good",
+            "Poor"
+        ],
+
+        datasets: [{
+            
+            data: [
+                Number("{{ excellent }}"),
+                Number("{{ good }}"),
+                Number("{{ poor }}")
+            ],
+
+            backgroundColor: [
+                "#22c55e",
+                "#f59e0b",
+                "#ef4444"
+            ]
+
+        }]
+
+    },
+
+    options: {
+        responsive: true
+    }
+
+});
+
+
+</script>
+
+function searchTable() {
+
+    let input = document.getElementById("searchInput");
+
+    let filter = input.value.toUpperCase();
+
+    let table = document.querySelector("table");
+
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        let td = tr[i].getElementsByTagName("td");
+
+        let found = false;
+
+        for (let j = 0; j < td.length; j++) {
+
+            if (td[j]) {
+
+                let txt = td[j].textContent || td[j].innerText;
+
+                if (txt.toUpperCase().indexOf(filter) > -1) {
+
+                    found = true;
+
+                }
+
+            }
+
+        }
+
+        tr[i].style.display = found ? "" : "none";
+
+    }
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Result</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#eef5ff;
+}
+
+.navbar{
+    background:#1e293b;
+    color:white;
+    text-align:center;
+    padding:18px;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:50px auto;
+}
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.result{
+    font-size:32px;
+    color:#2563eb;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.recommendation{
+    background:#f8fbff;
+    padding:20px;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+    margin-top:20px;
+    font-size:18px;
+    color:#444;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+🌙 Sleep Quality Prediction Result
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Your Prediction</h2>
+
+<div class="result">
+{{ prediction if prediction else "Good Sleep 😴" }}
+</div>
+
+<div class="recommendation">
+<strong>Recommendation:</strong><br><br>
+{{ recommendation if recommendation else "Maintain a healthy sleep routine. Sleep 7–8 hours daily, reduce stress, exercise regularly, and avoid using mobile phones before bedtime." }}
+</div>
+
+<a href="/predict" class="btn">🔄 Predict Again</a>
+
+<a href="/" class="btn">🏠 Home</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
